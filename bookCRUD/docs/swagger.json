@@ -1,0 +1,209 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "GO Gin Gorm",
+        "title": "Go Gin Swagger Example API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/tasks": {
+            "get": {
+                "description": "상세한 설명 기재",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Task List 조회",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    },
+                    "400": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "description": "상세한 설명 기재",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Task 생성",
+                "parameters": [
+                    {
+                        "description": "파라미터 설명",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.CreateTaskInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            }
+        },
+        "/tasks/{id}": {
+            "get": {
+                "description": "상세한 설명 기재",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Task 단건조회",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "파라미터 설명",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "상세한 설명 기재",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Task 삭제",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "파라미터 설명",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "patch": {
+                "description": "상세한 설명 기재",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Task 수정",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "파라미터 설명",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "파라미터 설명",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.UpdateTaskInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controllers.CreateTaskInput": {
+            "type": "object",
+            "properties": {
+                "assignedTo": {
+                    "type": "string",
+                    "example": "20210101"
+                },
+                "deadline": {
+                    "type": "string",
+                    "example": "2021-01-01"
+                },
+                "task": {
+                    "type": "string",
+                    "example": "할일"
+                }
+            }
+        },
+        "controllers.UpdateTaskInput": {
+            "type": "object",
+            "properties": {
+                "assignedTo": {
+                    "type": "string",
+                    "example": "20210101"
+                },
+                "deadline": {
+                    "type": "string",
+                    "example": "2021-01-01"
+                },
+                "task": {
+                    "type": "string",
+                    "example": "할일"
+                }
+            }
+        },
+        "models.Task": {
+            "type": "object",
+            "properties": {
+                "assignedTo": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "deadline": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "task": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

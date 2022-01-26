@@ -5,6 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func SetupRoutes(db *gorm.DB) *gin.Engine {
@@ -17,5 +20,8 @@ func SetupRoutes(db *gorm.DB) *gin.Engine {
 	r.GET("/tasks/:id", controllers.FindTask)
 	r.PATCH("/tasks/:id", controllers.UpdateTask)
 	r.DELETE("tasks/:id", controllers.DeleteTask)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	return r
 }

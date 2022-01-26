@@ -1,0 +1,140 @@
+basePath: /
+definitions:
+  controllers.CreateTaskInput:
+    properties:
+      assignedTo:
+        example: "20210101"
+        type: string
+      deadline:
+        example: "2021-01-01"
+        type: string
+      task:
+        example: 할일
+        type: string
+    type: object
+  controllers.UpdateTaskInput:
+    properties:
+      assignedTo:
+        example: "20210101"
+        type: string
+      deadline:
+        example: "2021-01-01"
+        type: string
+      task:
+        example: 할일
+        type: string
+    type: object
+  models.Task:
+    properties:
+      assignedTo:
+        type: string
+      created_at:
+        type: string
+      deadline:
+        type: string
+      id:
+        type: integer
+      task:
+        type: string
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: GO Gin Gorm
+  title: Go Gin Swagger Example API
+  version: "1.0"
+paths:
+  /tasks:
+    get:
+      consumes:
+      - application/json
+      description: 상세한 설명 기재
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+        "400":
+          description: ""
+      summary: Task List 조회
+    post:
+      consumes:
+      - application/json
+      description: 상세한 설명 기재
+      parameters:
+      - description: 파라미터 설명
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.CreateTaskInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Task 생성
+  /tasks/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 상세한 설명 기재
+      parameters:
+      - description: 파라미터 설명
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Task 삭제
+    get:
+      consumes:
+      - application/json
+      description: 상세한 설명 기재
+      parameters:
+      - description: 파라미터 설명
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Task 단건조회
+    patch:
+      consumes:
+      - application/json
+      description: 상세한 설명 기재
+      parameters:
+      - description: 파라미터 설명
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 파라미터 설명
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UpdateTaskInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Task 수정
+swagger: "2.0"
